@@ -1,25 +1,41 @@
-# Unit 23: Final Projects
+# Final Project
 
-## Overview
-Our journey together is coming to an end, but this is just the beginning for yours as a full-stack web developer. For your portfolio, you will want to include each of the three group projects in addition to two or three of your best homework assignments or personal projects. You didn't know then what you know now, so you may want to go back and do some tidying up. Make sure that each project has a professional README outlining its functionality, the tech stack, and the build process including any challenges faced and how they were overcome. 
+## Application Requirements
 
-Good luck!
+- Must use MERN stack
 
-## Key Topics
-* Portfolio
-* Resume
+- Must use a CSS framework _other than_ Bootstrap
 
-## Comprehension Check
-You will be employer-ready if you can answer the following questions:
-1. What is full-stack web development?
+## Presentation Requirements
 
-## Learning Objectives
-You will be employer-competitive if you are able to:
-* Polish your professional-grade portfolio with 3 deployed projects, including your final project.
-* Draft a resume detailing your newly acquired skillset.
-* Submit your resume, portfolio, and Github on BCS for feedback from a Profile Coach.
-* Connect with your Career Director for ongoing coaching and attend Career Services workshops.
+Use this [project presentation template](https://docs.google.com/presentation/d/1_u8TKy5zW5UlrVQVnyDEZ0unGI2tjQPDEpA0FNuBKAw/edit?usp=sharing) to address the following:
 
-## Helpful Links
-* [Splash That](https://careerservicesonlineevents.splashthat.com/)
-# Perfect-Pitch-Trainer
+- Elevator pitch: a one minute description of your application
+
+- Concept: What is your user story? What was your motivation for development?
+
+- Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
+
+- Demo: Show your stuff!
+
+- Directions for Future Development
+
+- Links to to the deployed application and the GitHub repository
+
+## Grading Metrics
+
+| Metric        | Weight |
+| ------------- | ------ |
+| Concept       | 10%    |
+| Design        | 20%    |
+| Functionality | 30%    |
+| Collaboration | 30%    |
+| Presentation  | 10%    |
+
+## Submission on BCS
+
+You are required to submit the following:
+
+- The URL of the deployed application
+
+- The URL of the GitHub repository
