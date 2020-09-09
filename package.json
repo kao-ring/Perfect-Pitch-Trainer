@@ -22,6 +22,11 @@
   "dependencies": {
     "express": "^4.16.3",
     "if-env": "^1.0.4",
-    "mongoose": "^5.8.11"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.11",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "react-piano": "^3.1.3"
   }
 }

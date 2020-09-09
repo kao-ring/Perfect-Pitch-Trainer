@@ -1,3 +1,5 @@
 module.exports = {
-  Recipe: require("./recipe")
+  Score: require("./score"),
+  Song: require("./song"),
+  User: require("./user"),
 };
