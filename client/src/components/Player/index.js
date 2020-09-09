@@ -1,4 +1,6 @@
 import React from "react";
+import API from "../utils/API.js";
+import axios from "axios";
 
 import _ from "lodash";
 import { Piano, KeyboardShortcuts, MidiNumbers } from "react-piano";
@@ -15,6 +17,7 @@ const noteRange = {
   first: MidiNumbers.fromNote("c4"),
   last: MidiNumbers.fromNote("f5"),
 };
+
 const keyboardShortcuts = KeyboardShortcuts.create({
   firstNote: noteRange.first,
   lastNote: noteRange.last,
@@ -33,8 +36,20 @@ class Player extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.scheduledEvents = [];
+  }
+
+  componentDidMount() {
+    this.loadSongs();
+  }
+
+  loadSongs() {
+    API.getSongs()
+      .then((res) => {
+        console.log(res);
+        this.setState(res.data);
+      })
+      .catch((err) => console.log(err));
   }
 
   getRecordingEndTime = () => {
@@ -53,6 +68,7 @@ class Player extends React.Component {
   };
 
   onClickPlay = () => {
+    console.log(this.state.recording.events);
     this.setRecording({
       mode: "PLAYING",
     });
@@ -104,6 +120,19 @@ class Player extends React.Component {
     return (
       <div>
         <div className="mt-5">
+          <button onClick={this.onClickPlay}>Play</button>
+          <button onClick={this.onClickStop}>Stop</button>
+          <button onClick={this.onClickClear}>Clear</button>
+
+          <select name="cars" id="cars" form="carform">
+            {/* map */}
+            <option>Choose a song...</option>
+            <option value="001">Song_001</option>
+            <option value="002">Song_002</option>
+            <option value="003">Song_003</option>
+          </select>
+        </div>
+        <div className="mt-5">
           <SoundfontProvider
             instrumentName="acoustic_grand_piano"
             audioContext={audioContext}
@@ -122,11 +151,7 @@ class Player extends React.Component {
             )}
           />
         </div>
-        <div className="mt-5">
-          <button onClick={this.onClickPlay}>Play</button>
-          <button onClick={this.onClickStop}>Stop</button>
-          <button onClick={this.onClickClear}>Clear</button>
-        </div>
+
         <div className="mt-5">
           <strong>Recorded notes</strong>
           <div>{JSON.stringify(this.state.recording.events)}</div>

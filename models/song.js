@@ -1,12 +1,17 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const songsSchema = new mongoose.Schema({
-  song: {
+const songSchema = new mongoose.Schema({
+  title: {
     type: String,
     required: true,
   },
-  // url string for thumbnail image
+  song: {
+    midiNumber: Number,
+    time: Number,
+    duration: Number,
+  },
+
   level: {
     type: Number,
     default: "",

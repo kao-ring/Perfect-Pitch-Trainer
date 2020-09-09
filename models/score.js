@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const scoreSchema = new mongoose.Schema({
   score: {
-    type: number,
+    type: Number,
     required: true,
   },
   // url string for thumbnail image
@@ -13,6 +13,6 @@ const scoreSchema = new mongoose.Schema({
   },
 });
 
-const Recipe = mongoose.model("Score", scoreSchema);
+const Score = mongoose.model("Score", scoreSchema);
 
 module.exports = Score;

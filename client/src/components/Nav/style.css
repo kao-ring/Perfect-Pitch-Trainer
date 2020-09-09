@@ -1,6 +1,19 @@
 .navbar {
   padding: 1rem;
   width: 100%;
-  background-color: burlywood;
+  background-color: gray;
   text-align: center;
+  color: bisque;
+  font-size: 24px;
+}
+
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
 }
