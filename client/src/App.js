@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import Player from "./components/Player";
-import Nav from "./components/Nav";
-import "./style.css";
+import React from 'react';
+import { useGlobalContext } from "./context/GlobalContext"
+import AuthenticatedApp from "./components/AuthenticatedApp"
+import UnauthenticatedApp from "./components/UnauthenticatedApp"
+import './App.css';
+
 
 function App() {
+  const [state, dispatch] = useGlobalContext();
+
   return (
-    <div className="container">
-      <Nav />
-      <Player />
+    <div className="App">
+      {state.user.token ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </div>
   );
 }

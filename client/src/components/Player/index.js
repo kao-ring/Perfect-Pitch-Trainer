@@ -1,6 +1,6 @@
 import React from "react";
-import API from "../utils/API.js";
-import axios from "axios";
+import API from "../../utils/API";
+// import axios from "axios";
 
 import _ from "lodash";
 import { Piano, KeyboardShortcuts, MidiNumbers } from "react-piano";
@@ -47,7 +47,9 @@ class Player extends React.Component {
     API.getSongs()
       .then((res) => {
         console.log(res);
-        this.setState(res.data);
+        this.setState({
+          events: res.data,
+        });
       })
       .catch((err) => console.log(err));
   }
@@ -78,6 +80,10 @@ class Player extends React.Component {
         event.time + event.duration,
       ])
     );
+
+    console.log("ログだよーん。");
+    console.log(startAndEndTimes);
+
     startAndEndTimes.forEach((time) => {
       this.scheduledEvents.push(
         setTimeout(() => {

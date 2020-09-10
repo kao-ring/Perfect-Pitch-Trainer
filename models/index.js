@@ -1,5 +1,4 @@
 module.exports = {
-  Score: require("./score"),
-  Song: require("./song"),
-  User: require("./user"),
+  User: require("./User"),
+  Song: require("./Song"),
 };

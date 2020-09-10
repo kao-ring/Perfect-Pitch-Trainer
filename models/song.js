@@ -13,7 +13,7 @@ const songSchema = new mongoose.Schema({
   },
 
   level: {
-    type: Number,
+    type: String,
     default: "",
   },
 });

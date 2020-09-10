@@ -1,15 +1,15 @@
-const router = require("express").Router();
-const db = require("../models");
-const authRoutes = require("./authentication/authRoutes.js");
+const Router = require("express").Router();
+const userController = require("../controllers/userController");
 
-router.get("/songs", (req, res) => {
-  db.Song.findAll();
+// routes that we want to protect
+Router.get("/welcome", (req, res) => {
+  res.send("Welcome to the Jungle.");
 });
 
-router.get("login", (req, res) => {
-  res.send("You are logged in.");
+Router.route("/users").post(userController.createNew);
+
+Router.get("/songs", (req, res) => {
+  // res.send("Welcome to the Jungle.");
 });
 
-router.route("/users").post(userController.createNew);
-
-module.exports = router;
+module.exports = Router;
