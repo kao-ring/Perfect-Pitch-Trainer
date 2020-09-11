@@ -1,8 +1,5 @@
-import React, { useReducer, createContext, useContext} from "react";
-import {
-  LOGIN,
-  LOGOUT
-} from "./actions";
+import React, { useReducer, createContext, useContext } from "react";
+import { LOGIN, LOGOUT, GET_WELCOME } from "./actions";
 
 // create the context
 const GlobalContext = createContext();
@@ -11,33 +8,36 @@ const { Provider } = GlobalContext;
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case LOGOUT: 
+    case GET_WELCOME:
       return {
         ...state,
-        user: {}
-      }
+        welcomeMessage: action.welcomeMessage,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        user: {},
+      };
     case LOGIN:
       return {
         ...state,
-        user: action.user
+        user: action.user,
       };
     default:
       return state;
   }
-}
+};
 
-const GlobalProvider = ({value=[], ...props}) => {
+const GlobalProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
-    user: {}
-  })
-  return <Provider value={[state,dispatch]} {...props} />
-}
+    user: {},
+    welcomeMessage: "",
+  });
+  return <Provider value={[state, dispatch]} {...props} />;
+};
 
 const useGlobalContext = () => {
   return useContext(GlobalContext);
-} 
+};
 
-export {
-  useGlobalContext, 
-  GlobalProvider
-}
+export { useGlobalContext, GlobalProvider };

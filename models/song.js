@@ -6,16 +6,13 @@ const songSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  song: {
-    midiNumber: Number,
-    time: Number,
-    duration: Number,
-  },
-
-  level: {
-    type: String,
-    default: "",
-  },
+  notes: [
+    {
+      midiNumber: Number,
+      time: Number,
+      duration: Number,
+    },
+  ],
 });
 
 const Song = mongoose.model("Song", songSchema);

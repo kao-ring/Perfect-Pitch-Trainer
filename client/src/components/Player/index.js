@@ -1,6 +1,7 @@
 import React from "react";
 import API from "../../utils/API";
-// import axios from "axios";
+import songs from "./songs.json";
+import "./style.css";
 
 import _ from "lodash";
 import { Piano, KeyboardShortcuts, MidiNumbers } from "react-piano";
@@ -32,6 +33,8 @@ class Player extends React.Component {
       currentTime: 0,
       currentEvents: [],
     },
+    songevents: [],
+    currentSong: [],
   };
 
   constructor(props) {
@@ -46,20 +49,21 @@ class Player extends React.Component {
   loadSongs() {
     API.getSongs()
       .then((res) => {
+        console.log("レスー。");
         console.log(res);
         this.setState({
-          events: res.data,
+          songevents: res.data,
         });
       })
       .catch((err) => console.log(err));
   }
 
   getRecordingEndTime = () => {
-    if (this.state.recording.events.length === 0) {
+    if (this.state.currentSong.length === 0) {
       return 0;
     }
     return Math.max(
-      ...this.state.recording.events.map((event) => event.time + event.duration)
+      ...this.state.currentSong.map((event) => event.time + event.duration)
     );
   };
 
@@ -69,27 +73,55 @@ class Player extends React.Component {
     });
   };
 
+  // onClickPlay = () => {
+  //   console.log("イベント");
+  //   console.log(this.state.currentSong);
+  //   this.setRecording({
+  //     mode: "PLAYING",
+  //   });
+
+  //   const startAndEndTimes = _.uniq(
+  //     _.flatMap(this.state.currentSong, (event) => [
+  //       event.time,
+  //       event.time + event.duration,
+  //     ])
+  //   );
+  //   startAndEndTimes.forEach((time) => {
+  //     this.scheduledEvents.push(
+  //       setTimeout(() => {
+  //         const currentEvents = this.state.currentSong.filter((event) => {
+  //           return event.time <= time && event.time + event.duration > time;
+  //         });
+  //         this.setRecording({
+  //           currentEvents,
+  //         });
+  //         console.log(currentEvents);
+  //       }, time * 1000)
+  //     );
+  //   });
+  //   // Stop at the end
+  //   setTimeout(() => {
+  //     this.onClickStop();
+  //   }, this.getRecordingEndTime() * 1000);
+  // };
   onClickPlay = () => {
-    console.log(this.state.recording.events);
     this.setRecording({
       mode: "PLAYING",
     });
     const startAndEndTimes = _.uniq(
-      _.flatMap(this.state.recording.events, (event) => [
+      _.flatMap(this.state.currentSong, (event) => [
         event.time,
         event.time + event.duration,
       ])
     );
-
-    console.log("ログだよーん。");
     console.log(startAndEndTimes);
-
     startAndEndTimes.forEach((time) => {
       this.scheduledEvents.push(
         setTimeout(() => {
-          const currentEvents = this.state.recording.events.filter((event) => {
+          const currentEvents = this.state.currentSong.filter((event) => {
             return event.time <= time && event.time + event.duration > time;
           });
+          console.log(currentEvents);
           this.setRecording({
             currentEvents,
           });
@@ -122,45 +154,106 @@ class Player extends React.Component {
     });
   };
 
+  midiToNote = (num) => {
+    switch (num) {
+      case 60:
+        return "C";
+      case 61:
+        return "C#/Db";
+      case 62:
+        return "D";
+      case 63:
+        return "D#/Eb";
+      case 64:
+        return "E";
+      case 65:
+        return "F";
+      case 66:
+        return "F#/Gb";
+      case 67:
+        return "G";
+      case 68:
+        return "G#/Ab";
+      case 69:
+        return "A";
+      case 60:
+        return "A#/Bb";
+      case 70:
+        return "B";
+      case 71:
+        return "C";
+      case 72:
+        return "C#/Db";
+      case 73:
+        return "D";
+      case 74:
+        return "D#/Eb";
+      case 75:
+        return "E";
+      case 76:
+        return "F";
+
+      default:
+        return "-";
+        break;
+    }
+  };
+
+  checkAnswer = () => {};
+
   render() {
     return (
-      <div>
-        <div className="mt-5">
-          <button onClick={this.onClickPlay}>Play</button>
-          <button onClick={this.onClickStop}>Stop</button>
-          <button onClick={this.onClickClear}>Clear</button>
-
-          <select name="cars" id="cars" form="carform">
-            {/* map */}
-            <option>Choose a song...</option>
-            <option value="001">Song_001</option>
-            <option value="002">Song_002</option>
-            <option value="003">Song_003</option>
+      <div className="container">
+        <div>
+          <select
+            onChange={(event) => {
+              this.setState({
+                currentSong: this.state.songevents[event.target.value].notes,
+              });
+            }}
+          >
+            <option>Choose a song</option>
+            {this.state.songevents.map((song, i) => {
+              return <option value={i}>{song.title}</option>;
+            })}
           </select>
-        </div>
-        <div className="mt-5">
-          <SoundfontProvider
-            instrumentName="acoustic_grand_piano"
-            audioContext={audioContext}
-            hostname={soundfontHostname}
-            render={({ isLoading, playNote, stopNote }) => (
-              <PianoWithRecording
-                recording={this.state.recording}
-                setRecording={this.setRecording}
-                noteRange={noteRange}
-                width={300}
-                playNote={playNote}
-                stopNote={stopNote}
-                disabled={isLoading}
-                keyboardShortcuts={keyboardShortcuts}
-              />
-            )}
-          />
+          <button onClick={this.onClickPlay}>Play</button>
         </div>
 
-        <div className="mt-5">
-          <strong>Recorded notes</strong>
-          <div>{JSON.stringify(this.state.recording.events)}</div>
+        <br />
+        <div className="piano">
+          <div>
+            <SoundfontProvider
+              instrumentName="acoustic_grand_piano"
+              audioContext={audioContext}
+              hostname={soundfontHostname}
+              render={({ isLoading, playNote, stopNote }) => (
+                <PianoWithRecording
+                  recording={this.state.recording}
+                  setRecording={this.setRecording}
+                  noteRange={noteRange}
+                  width={300}
+                  playNote={playNote}
+                  stopNote={stopNote}
+                  disabled={isLoading}
+                  keyboardShortcuts={keyboardShortcuts}
+                />
+              )}
+            />
+          </div>
+        </div>
+
+        <br />
+        <div>
+          <strong>Your answer is...</strong>
+          <div>
+            {" "}
+            {this.state.recording.events.map((event) => {
+              return this.midiToNote(event.midiNumber) + ", ";
+            })}
+          </div>
+          <button onClick={this.onClickClear}>Clear</button>
+          <button onClick={this.checkAnswer}>Check your answer</button>{" "}
         </div>
       </div>
     );

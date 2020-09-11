@@ -2,37 +2,56 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.icon {
+  height: 3rem;
+}
+button {
+  background-color: #48d1cc;
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 5px;
+  border: 0.16em solid rgba(255, 255, 255, 0);
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #191970;
+  text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
+  text-align: center;
+  transition: all 0.2s;
+}
+button:hover {
+  border-color: rgba(255, 255, 255, 1);
+}
+.logout {
+  position: fixed;
+  bottom: 2rem;
+  color: #363131;
+}
+.signup {
+  background-color: #ffa500;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input,
+select {
+  font-family: Arial, Sans-Serif;
+  font-size: 16px;
+  color: #363131;
+  padding: 7px;
+  outline: none;
+  text-align: center;
+  border: solid 1px #adadad;
+  width: 150px;
+  transition: all 2s ease-in-out;
+  -webkit-transition: all 2s ease-in-out;
+  -moz-transition: all 2s ease-in-out;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  -moz-box-shadow: inset 0 0 5px 5px #e6e6e6;
+  -webkit-box-shadow: inset 0 0 5px 5px #e6e6e6;
+  box-shadow: inset 0 0 5px 5px #e6e6e6;
+  clear: right;
+  margin: 10px;
 }

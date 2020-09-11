@@ -4,7 +4,7 @@ import "./style.css";
 function Nav() {
   return (
     <div className="navbar">
-      <a href="/">Perfect Pitch Trainer</a>
+      <a href="/">🦻　Perfect Pitch Trainer　🦻</a>
     </div>
   );
 }
