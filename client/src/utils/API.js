@@ -6,4 +6,7 @@ export default {
   getSongs: function () {
     return axios.get("/api/songs");
   },
+  addScore: function (scoreData) {
+    return axios.post("/api/user/tests", scoreData);
+  },
 };

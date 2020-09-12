@@ -167,7 +167,7 @@ class Player extends React.Component {
     }
   };
 
-  checkAnswer = () => {
+  checkAnswer = async () => {
     this.setState({
       correctAnswer: [],
       inputAnswer: [],
@@ -191,7 +191,10 @@ class Player extends React.Component {
     console.log(
       Math.floor((count / this.state.correctAnswer.length) * 100) + "% Correct"
     );
-    return count;
+    let score =
+      Math.floor((count / this.state.correctAnswer.length) * 100) + "% Correct";
+
+    API.addScore({ title: this.state.currentSong.title, score: score });
   };
 
   render() {

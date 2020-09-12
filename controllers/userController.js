@@ -16,7 +16,7 @@ module.exports = {
     const addTest = await db.User.findByIdAndUpdate(
       { _id: req.body._id },
       {
-        $push: { tests: { title: req.body.title, pass: req.body.pass } },
+        $push: { tests: { title: req.body.title, score: req.body.score } },
       }
     );
 

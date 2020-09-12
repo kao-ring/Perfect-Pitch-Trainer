@@ -47,7 +47,7 @@ const UnauthenticatedApp = () => {
           </div>
           <div className="btn">
             {" "}
-            <button type="submit">Submit</button>
+            <button type="submit">Log in</button>
           </div>
         </form>
         <hr />
