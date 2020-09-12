@@ -18,6 +18,7 @@ const UnauthenticatedApp = () => {
     });
 
     console.log(data);
+    console.log(state);
     // save the authenticated user data in local storage
     localStorage.setItem("authUser", JSON.stringify(data));
     // save the authenticated user data in local storage

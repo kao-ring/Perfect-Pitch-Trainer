@@ -1,10 +1,10 @@
 import React from "react";
 import API from "../../utils/API";
-import songs from "./songs.json";
+
 import "./style.css";
 
 import _ from "lodash";
-import { Piano, KeyboardShortcuts, MidiNumbers } from "react-piano";
+import { KeyboardShortcuts, MidiNumbers } from "react-piano";
 import "react-piano/dist/styles.css";
 
 import SoundfontProvider from "./SoundfontProvider";
@@ -33,8 +33,10 @@ class Player extends React.Component {
       currentTime: 0,
       currentEvents: [],
     },
-    songevents: [],
+    songEvents: [],
     currentSong: [],
+    correctAnswer: [],
+    inputAnswer: [],
   };
 
   constructor(props) {
@@ -49,10 +51,8 @@ class Player extends React.Component {
   loadSongs() {
     API.getSongs()
       .then((res) => {
-        console.log("レスー。");
-        console.log(res);
         this.setState({
-          songevents: res.data,
+          songEvents: res.data,
         });
       })
       .catch((err) => console.log(err));
@@ -73,37 +73,6 @@ class Player extends React.Component {
     });
   };
 
-  // onClickPlay = () => {
-  //   console.log("イベント");
-  //   console.log(this.state.currentSong);
-  //   this.setRecording({
-  //     mode: "PLAYING",
-  //   });
-
-  //   const startAndEndTimes = _.uniq(
-  //     _.flatMap(this.state.currentSong, (event) => [
-  //       event.time,
-  //       event.time + event.duration,
-  //     ])
-  //   );
-  //   startAndEndTimes.forEach((time) => {
-  //     this.scheduledEvents.push(
-  //       setTimeout(() => {
-  //         const currentEvents = this.state.currentSong.filter((event) => {
-  //           return event.time <= time && event.time + event.duration > time;
-  //         });
-  //         this.setRecording({
-  //           currentEvents,
-  //         });
-  //         console.log(currentEvents);
-  //       }, time * 1000)
-  //     );
-  //   });
-  //   // Stop at the end
-  //   setTimeout(() => {
-  //     this.onClickStop();
-  //   }, this.getRecordingEndTime() * 1000);
-  // };
   onClickPlay = () => {
     this.setRecording({
       mode: "PLAYING",
@@ -114,14 +83,14 @@ class Player extends React.Component {
         event.time + event.duration,
       ])
     );
-    console.log(startAndEndTimes);
+
     startAndEndTimes.forEach((time) => {
       this.scheduledEvents.push(
         setTimeout(() => {
           const currentEvents = this.state.currentSong.filter((event) => {
             return event.time <= time && event.time + event.duration > time;
           });
-          console.log(currentEvents);
+
           this.setRecording({
             currentEvents,
           });
@@ -176,30 +145,54 @@ class Player extends React.Component {
         return "G#/Ab";
       case 69:
         return "A";
-      case 60:
-        return "A#/Bb";
       case 70:
-        return "B";
+        return "A#/Bb";
       case 71:
-        return "C";
+        return "B";
       case 72:
-        return "C#/Db";
+        return "C";
       case 73:
-        return "D";
+        return "C#/Db";
       case 74:
-        return "D#/Eb";
+        return "D";
       case 75:
-        return "E";
+        return "D#/Eb";
       case 76:
+        return "E";
+      case 77:
         return "F";
 
       default:
         return "-";
-        break;
     }
   };
 
-  checkAnswer = () => {};
+  checkAnswer = () => {
+    this.setState({
+      correctAnswer: [],
+      inputAnswer: [],
+    });
+
+    this.state.currentSong.map((note) => {
+      this.state.correctAnswer.push(note.midiNumber);
+    });
+
+    this.state.recording.events.map((note) => {
+      this.state.inputAnswer.push(note.midiNumber);
+    });
+    let count = 0;
+    for (let i = 0; i < this.state.correctAnswer.length; i++) {
+      if (this.state.correctAnswer[i] === this.state.inputAnswer[i]) {
+        count++;
+      }
+    }
+    console.log("⭕️" + this.state.correctAnswer);
+    console.log("❌" + this.state.inputAnswer);
+    console.log(
+      Math.floor((count / this.state.correctAnswer.length) * 100) + "% Correct"
+    );
+    return count;
+  };
 
   render() {
     return (
@@ -208,13 +201,17 @@ class Player extends React.Component {
           <select
             onChange={(event) => {
               this.setState({
-                currentSong: this.state.songevents[event.target.value].notes,
+                currentSong: this.state.songEvents[event.target.value].notes,
               });
             }}
           >
             <option>Choose a song</option>
-            {this.state.songevents.map((song, i) => {
-              return <option value={i}>{song.title}</option>;
+            {this.state.songEvents.map((song, i) => {
+              return (
+                <option value={i} key={song.title}>
+                  {song.title}
+                </option>
+              );
             })}
           </select>
           <button onClick={this.onClickPlay}>Play</button>

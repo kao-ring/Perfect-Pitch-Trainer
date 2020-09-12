@@ -16,7 +16,6 @@ const AuthenticatedApp = () => {
       },
     });
 
-    console.log(data);
     dispatch({
       type: GET_WELCOME,
       welcomeMessage: data,
