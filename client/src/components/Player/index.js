@@ -1,6 +1,5 @@
 import React from "react";
 import API from "../../utils/API";
-
 import "./style.css";
 
 import _ from "lodash";
@@ -9,6 +8,8 @@ import "react-piano/dist/styles.css";
 
 import SoundfontProvider from "./SoundfontProvider";
 import PianoWithRecording from "./PianoWithRecording";
+
+import Results from "../../components/Results";
 
 // webkitAudioContext fallback needed to support Safari
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -35,8 +36,11 @@ class Player extends React.Component {
     },
     songEvents: [],
     currentSong: [],
+    currentSongTitle: "",
     correctAnswer: [],
     inputAnswer: [],
+    score: "",
+    user: {},
   };
 
   constructor(props) {
@@ -46,6 +50,7 @@ class Player extends React.Component {
 
   componentDidMount() {
     this.loadSongs();
+    this.userInfo();
   }
 
   loadSongs() {
@@ -53,6 +58,16 @@ class Player extends React.Component {
       .then((res) => {
         this.setState({
           songEvents: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  userInfo() {
+    API.getUserInfo()
+      .then((res) => {
+        this.setState({
+          user: res.data[0],
         });
       })
       .catch((err) => console.log(err));
@@ -169,16 +184,17 @@ class Player extends React.Component {
 
   checkAnswer = async () => {
     this.setState({
+      recording: { events: [] },
       correctAnswer: [],
       inputAnswer: [],
     });
 
     this.state.currentSong.map((note) => {
-      this.state.correctAnswer.push(note.midiNumber);
+      return this.state.correctAnswer.push(note.midiNumber);
     });
 
     this.state.recording.events.map((note) => {
-      this.state.inputAnswer.push(note.midiNumber);
+      return this.state.inputAnswer.push(note.midiNumber);
     });
     let count = 0;
     for (let i = 0; i < this.state.correctAnswer.length; i++) {
@@ -186,15 +202,17 @@ class Player extends React.Component {
         count++;
       }
     }
-    console.log("⭕️" + this.state.correctAnswer);
-    console.log("❌" + this.state.inputAnswer);
-    console.log(
-      Math.floor((count / this.state.correctAnswer.length) * 100) + "% Correct"
-    );
-    let score =
-      Math.floor((count / this.state.correctAnswer.length) * 100) + "% Correct";
 
-    API.addScore({ title: this.state.currentSong.title, score: score });
+    let score = Math.floor((count / this.state.correctAnswer.length) * 100);
+    this.setState({ score: score });
+
+    API.addScore({
+      _id: this.state.user._id,
+      title: this.state.currentSongTitle,
+      score: score,
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   render() {
@@ -205,6 +223,8 @@ class Player extends React.Component {
             onChange={(event) => {
               this.setState({
                 currentSong: this.state.songEvents[event.target.value].notes,
+                currentSongTitle: this.state.songEvents[event.target.value]
+                  .title,
               });
             }}
           >
@@ -219,7 +239,6 @@ class Player extends React.Component {
           </select>
           <button onClick={this.onClickPlay}>Play</button>
         </div>
-
         <br />
         <div className="piano">
           <div>
@@ -242,7 +261,6 @@ class Player extends React.Component {
             />
           </div>
         </div>
-
         <br />
         <div>
           <strong>Your answer is...</strong>
@@ -253,8 +271,9 @@ class Player extends React.Component {
             })}
           </div>
           <button onClick={this.onClickClear}>Clear</button>
-          <button onClick={this.checkAnswer}>Check your answer</button>{" "}
+          <button onClick={this.checkAnswer}>Check your answer</button>
         </div>
+        {this.state.score ? <Results score={this.state.score} /> : <p></p>}
       </div>
     );
   }

@@ -3,7 +3,8 @@ import { useGlobalContext } from "../context/GlobalContext";
 import { LOGOUT, GET_WELCOME } from "../context/actions";
 import axios from "axios";
 import Player from "./Player";
-// import Nav from "./Nav";
+import Nav from "./Nav";
+import Footer from "./Footer";
 // import Keyboard from "./Keyboard";
 
 const AuthenticatedApp = () => {
@@ -37,6 +38,7 @@ const AuthenticatedApp = () => {
 
   return (
     <div>
+      <Nav />
       {state.welcomeMessage ? <p>{state.welcomeMessage}</p> : <p>Hello</p>}
 
       <Player />
@@ -44,6 +46,7 @@ const AuthenticatedApp = () => {
       <button className="logout" onClick={handleLogout}>
         Logout
       </button>
+      <Footer />
     </div>
   );
 };

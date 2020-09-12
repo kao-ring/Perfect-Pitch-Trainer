@@ -11,9 +11,13 @@ Router.route("/users").post(userController.createNew);
 
 Router.route("/users/tests").post(userController.addTest);
 
+Router.get("/users", (req, res) => {
+  db.User.find({})
+    .then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
+});
+
 Router.get("/songs", (req, res) => {
-  // res.send("Welcome to the Jungle.");
-  // use the song model to find all the songs in the database
   db.Song.find({})
     .then((dbModel) => res.json(dbModel))
     .catch((err) => res.status(422).json(err));

@@ -4,6 +4,8 @@ import { LOGIN } from "../context/actions";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Register from "../pages/Register";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const UnauthenticatedApp = () => {
   const [state, dispatch] = useGlobalContext();
@@ -35,6 +37,7 @@ const UnauthenticatedApp = () => {
 
   return (
     <Router>
+      <Header />
       <Route exact path="/">
         <p>Please enter your information to login:</p>
         <form onSubmit={handleSubmit}>
@@ -59,6 +62,7 @@ const UnauthenticatedApp = () => {
       <Route exact path="/register">
         <Register />
       </Route>
+      <Footer />
     </Router>
   );
 };

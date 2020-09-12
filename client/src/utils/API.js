@@ -7,6 +7,10 @@ export default {
     return axios.get("/api/songs");
   },
   addScore: function (scoreData) {
-    return axios.post("/api/user/tests", scoreData);
+    console.log("addScoreだよーん。");
+    return axios.post("/api/users/tests", scoreData);
+  },
+  getUserInfo: function () {
+    return axios.get("/api/users");
   },
 };

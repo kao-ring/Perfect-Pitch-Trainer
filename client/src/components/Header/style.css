@@ -1,0 +1,19 @@
+.navbar {
+  padding: 1rem;
+  width: 100%;
+  background-color: #ffa500;
+  text-align: center;
+  color: darkslategray;
+  font-size: 24px;
+}
+
+a:link {
+  color: darkslategray;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: darkslategray;
+  background-color: transparent;
+  text-decoration: none;
+}

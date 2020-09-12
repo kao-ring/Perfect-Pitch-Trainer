@@ -1,10 +1,10 @@
 import React from "react";
 import "./style.css";
 
-function Nav() {
+function Nav(props) {
   return (
     <div className="navbar">
-      <a href="/">🦻　Perfect Pitch Trainer　🦻</a>
+      <a href="/">🦻　Perfect Pitch Trainer　🦻</a><a>Progress</a>
     </div>
   );
 }
