@@ -50,6 +50,7 @@ class Player extends React.Component {
 
   componentDidMount() {
     this.loadSongs();
+
     this.userInfo();
   }
 
@@ -66,8 +67,9 @@ class Player extends React.Component {
   userInfo() {
     API.getUserInfo()
       .then((res) => {
+        console.log(res.data);
         this.setState({
-          user: res.data[0],
+          user: res.data,
         });
       })
       .catch((err) => console.log(err));
@@ -92,6 +94,7 @@ class Player extends React.Component {
     this.setRecording({
       mode: "PLAYING",
     });
+    console.log(this.state.currentSong);
     const startAndEndTimes = _.uniq(
       _.flatMap(this.state.currentSong, (event) => [
         event.time,
@@ -218,6 +221,7 @@ class Player extends React.Component {
   render() {
     return (
       <div className="container">
+        <h3>Listen to a song and play on piano what you hear.</h3>
         <div>
           <select
             onChange={(event) => {

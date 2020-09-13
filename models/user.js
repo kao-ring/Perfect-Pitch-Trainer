@@ -1,7 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const testSchema = new Schema({ title: String, score: Number });
+const testSchema = new Schema({
+  title: String,
+  score: Number,
+  scoreCreated: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
 const userSchema = new Schema({
   user_name: String,

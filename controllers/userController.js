@@ -8,7 +8,6 @@ module.exports = {
       user_name: user_name,
       password: password,
     });
-
     res.json(newUser);
   },
 
@@ -19,7 +18,6 @@ module.exports = {
         $push: { tests: { title: req.body.title, score: req.body.score } },
       }
     );
-
     res.json(addTest);
   },
 };

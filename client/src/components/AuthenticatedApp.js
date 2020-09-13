@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 import { LOGOUT, GET_WELCOME } from "../context/actions";
 import axios from "axios";
 import Player from "./Player";
 import Nav from "./Nav";
 import Footer from "./Footer";
+import Progress from "../pages/Progress.js";
+import NewSong from "./NewSong";
 // import Keyboard from "./Keyboard";
 
 const AuthenticatedApp = () => {
@@ -39,9 +42,14 @@ const AuthenticatedApp = () => {
   return (
     <div>
       <Nav />
-      {state.welcomeMessage ? <p>{state.welcomeMessage}</p> : <p>Hello</p>}
+      {/* {state.welcomeMessage ? <p>{state.welcomeMessage}</p> : <p>Hello</p>} */}
 
-      <Player />
+      <Router>
+        <Route exact path="/" component={Player} />
+        <Route exact path="/progress" component={Progress} />
+        <Route exact path="/newsong" component={NewSong} />
+      </Router>
+
       <hr />
       <button className="logout" onClick={handleLogout}>
         Logout

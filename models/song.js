@@ -8,6 +8,7 @@ const songSchema = new mongoose.Schema({
   },
   notes: [
     {
+      _id: false,
       midiNumber: Number,
       time: Number,
       duration: Number,

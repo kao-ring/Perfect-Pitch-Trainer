@@ -6,11 +6,23 @@ export default {
   getSongs: function () {
     return axios.get("/api/songs");
   },
+
+  saveSong: function (songData) {
+    return axios.post("/api/songs", songData);
+  },
+  updateSong: function (id, songData) {
+    return axios.put("/api/songs/" + id, songData);
+  },
+  deleteSong: function (id) {
+    return axios.delete("/api/songs/" + id);
+  },
+
   addScore: function (scoreData) {
-    console.log("addScoreだよーん。");
     return axios.post("/api/users/tests", scoreData);
   },
+
   getUserInfo: function () {
-    return axios.get("/api/users");
+    let user = JSON.parse(localStorage.getItem("authUser")).user_name;
+    return axios.get("/api/users/" + user);
   },
 };

@@ -5,6 +5,7 @@
   "proxy": "http://localhost:4000/",
   "dependencies": {
     "axios": "^0.20.0",
+    "chart.js": "^2.9.3",
     "cra-template": "1.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
