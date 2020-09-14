@@ -40,9 +40,8 @@ const AuthenticatedApp = () => {
 
   return (
     <div className="container">
-      <Nav />
-
       <Router>
+        <Nav />
         <Route exact path="/" component={Player} />
         <Route exact path="/progress" component={Progress} />
         <Route path="/newsong" component={NewSong} />

@@ -1,30 +1,31 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 function Nav() {
   const user = JSON.parse(localStorage.getItem("authUser")).user_name;
   return (
     <div className="navbar">
-      <a href="/">
+      <Link to="/">
         {/* <i className="fas fa-music"> </i> */}
         Perfect Pitch Trainer
-      </a>
+      </Link>
       <div className="hiUser">
         <i className="far fa-user"></i>
         {user ? user : "log in please"}
       </div>
       <div className="navBtn">
-        <a href="/progress">
+        <Link to="/progress">
           {"   "}
           <i className="fas fa-chart-line"> </i>
-        </a>
+        </Link>
       </div>
       <div className="navBtn">
         {" "}
         {"   "}
-        <a href="/newsong">
+        <Link to="/newsong">
           <i className="fas fa-plus"></i>
-        </a>
+        </Link>
       </div>
     </div>
   );
