@@ -11,7 +11,7 @@ function Nav() {
       </a>
       <div className="hiUser">
         <i className="far fa-user"></i>
-        {user}
+        {user ? user : "log in please"}
       </div>
       <div className="navBtn">
         <a href="/progress">
