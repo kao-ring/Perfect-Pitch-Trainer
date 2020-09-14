@@ -4,6 +4,7 @@ import { LOGIN } from "../context/actions";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Register from "../pages/Register";
+import Info from "../pages/Info";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -61,6 +62,9 @@ const UnauthenticatedApp = () => {
       </Route>
       <Route exact path="/register">
         <Register />
+      </Route>
+      <Route exact path="/info">
+        <Info />
       </Route>
       <Footer />
     </Router>

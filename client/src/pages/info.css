@@ -1,0 +1,15 @@
+.container {
+  text-align: center;
+  color: slategray;
+}
+.text_left {
+  text-align: left;
+}
+.bg_light {
+  background-color: bisque;
+  padding: 15px;
+  margin-top: 5px;
+}
+.float_right {
+  float: right;
+}

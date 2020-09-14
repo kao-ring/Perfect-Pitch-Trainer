@@ -8,6 +8,7 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import Progress from "../pages/Progress.js";
 import NewSong from "./NewSong";
+import Info from "../pages/Info";
 
 const AuthenticatedApp = () => {
   const [state, dispatch] = useGlobalContext();
@@ -45,16 +46,17 @@ const AuthenticatedApp = () => {
         <Route exact path="/" component={Player} />
         <Route exact path="/progress" component={Progress} />
         <Route path="/newsong" component={NewSong} />
+        <Route exact path="/info" component={Info} />
+
+        <hr />
+
+        <div className="logout">
+          <button className="logOutBtn" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+        <Footer />
       </Router>
-
-      <hr />
-
-      <div className="logout">
-        <button className="logOutBtn" onClick={handleLogout}>
-          Logout
-        </button>
-      </div>
-      <Footer />
     </div>
   );
 };
