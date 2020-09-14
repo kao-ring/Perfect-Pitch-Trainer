@@ -42,7 +42,7 @@ const AuthenticatedApp = () => {
   return (
     <div className="container">
       <Router>
-        <Nav />
+        <Nav handleLogout={handleLogout} />
         <Route exact path="/" component={Player} />
         <Route exact path="/progress" component={Progress} />
         <Route path="/newsong" component={NewSong} />
@@ -50,11 +50,11 @@ const AuthenticatedApp = () => {
 
         <hr />
 
-        <div className="logout">
+        {/* <div className="logout">
           <button className="logOutBtn" onClick={handleLogout}>
             Logout
           </button>
-        </div>
+        </div> */}
         <Footer />
       </Router>
     </div>

@@ -17,7 +17,7 @@ function Progress() {
   const userInfo = () => {
     API.getAllUserInfo()
       .then((res) => {
-        console.log("ログデータ");
+        console.log("***getAllUserInfo***");
         console.log(res.data);
 
         setUsers(res.data);
@@ -49,19 +49,14 @@ function Progress() {
         type: "bar",
         dataPoints: users.map((user) => {
           // return { y: scoreTotal(user.tests), label: user.user_name };
-          return { y: Math.floor(Math.random() * 100), label: user.user_name };
+          return {
+            y: Math.floor(Math.random() * 10000),
+            label: user.user_name,
+          };
         }),
       },
     ],
   };
-
-  // =====
-  // const scoreArr = user.tests[i].score;
-  // const reducer = (accumulator, currentValue) => accumulator + currentValue;
-
-  // // 1 + 2 + 3 + 4
-  // console.log(array1.reduce(reducer));
-  // ======
 
   return (
     <div>

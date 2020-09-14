@@ -2,16 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-function Nav() {
+function Nav(props) {
   const user = JSON.parse(localStorage.getItem("authUser")).user_name;
   return (
     <div className="navbar">
       <Link to="/">
         {/* <i className="fas fa-music"> </i> */}
         Perfect Pitch Trainer
-      </Link>
+      </Link>{" "}
       <div className="hiUser">
-        <i className="far fa-user"></i>
+        <i className="far fa-user" onClick={props.handleLogout}></i>
         {user ? user : "log in please"}
       </div>
       <div className="navBtn">
@@ -32,3 +32,11 @@ function Nav() {
 }
 
 export default Nav;
+
+{
+  /* <div className="logout">
+  <button className="logOutBtn" onClick={handleLogout}>
+    Logout
+  </button>
+</div>; */
+}
