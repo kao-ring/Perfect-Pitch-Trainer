@@ -6,7 +6,7 @@
   height: 3rem;
 }
 .img {
-  width: 40%;
+  width: 30%;
 }
 button {
   background-color: #ffa500;
@@ -73,11 +73,15 @@ select {
   position: fixed;
   left: 0;
   right: 0px;
-  bottom: 1.5rem;
+  bottom: 2rem;
   color: #363131;
   text-align: center;
 }
 
-/* .welcome {
-  float: left;
-} */
+.logOutBtn {
+  background-color: gray;
+  color: white;
+}
+.pianoBtn {
+  background-color: gray;
+}

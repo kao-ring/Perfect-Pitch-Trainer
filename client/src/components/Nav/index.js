@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 
 function Nav() {
-  let user = JSON.parse(localStorage.getItem("authUser")).user_name;
+  const user = JSON.parse(localStorage.getItem("authUser")).user_name;
   return (
     <div className="navbar">
       <a href="/">

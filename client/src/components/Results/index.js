@@ -12,10 +12,21 @@ function Results(props) {
     image = <img src="img/wrong.png" alt="wrong" className="img" />;
   }
 
+  // function okBtn() {
+  //   console.log("オッケー");
+  //   message = "next";
+  //   image = "da";
+  // }
+
   return (
     <div className="results">
-      {message}
-      {image}
+      <div>
+        {message}
+        {image}
+      </div>
+      <div>
+        <button onClick={props.onClickOk}>OK</button>
+      </div>{" "}
     </div>
   );
 }

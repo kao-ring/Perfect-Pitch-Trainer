@@ -183,7 +183,7 @@ class NewSong extends React.Component {
     return (
       <div>
         <h3 className="h3">Add songs</h3>
-        <div>
+        <button className="pianoBtn">
           <SoundfontProvider
             instrumentName="acoustic_grand_piano"
             audioContext={audioContext}
@@ -201,7 +201,7 @@ class NewSong extends React.Component {
               />
             )}
           />
-        </div>
+        </button>
 
         <div>
           <strong>Saving Data</strong>

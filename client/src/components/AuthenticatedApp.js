@@ -8,7 +8,6 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import Progress from "../pages/Progress.js";
 import NewSong from "./NewSong";
-// import Keyboard from "./Keyboard";
 
 const AuthenticatedApp = () => {
   const [state, dispatch] = useGlobalContext();
@@ -52,18 +51,9 @@ const AuthenticatedApp = () => {
       <hr />
 
       <div className="logout">
-        <div>
-          <button className="logOutBtn" onClick={handleLogout}>
-            Logout
-          </button>
-          <div className="welcome">
-            {state.welcomeMessage ? (
-              <p>{state.welcomeMessage}</p>
-            ) : (
-              <p>Hello</p>
-            )}
-          </div>
-        </div>
+        <button className="logOutBtn" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
       <Footer />
     </div>

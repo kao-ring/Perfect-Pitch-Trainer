@@ -1,6 +1,5 @@
 import React from "react";
 import API from "../../utils/API";
-import "./style.css";
 
 import _ from "lodash";
 import { KeyboardShortcuts, MidiNumbers } from "react-piano";
@@ -141,6 +140,13 @@ class Player extends React.Component {
     });
   };
 
+  onClickOk = () => {
+    this.onClickClear();
+    this.setState({
+      score: "",
+    });
+  };
+
   midiToNote = (num) => {
     switch (num) {
       case 60:
@@ -245,25 +251,27 @@ class Player extends React.Component {
         </div>
         <br />
         <div className="piano">
-          <div>
-            <SoundfontProvider
-              instrumentName="acoustic_grand_piano"
-              audioContext={audioContext}
-              hostname={soundfontHostname}
-              render={({ isLoading, playNote, stopNote }) => (
-                <PianoWithRecording
-                  recording={this.state.recording}
-                  setRecording={this.setRecording}
-                  noteRange={noteRange}
-                  width={300}
-                  playNote={playNote}
-                  stopNote={stopNote}
-                  disabled={isLoading}
-                  keyboardShortcuts={keyboardShortcuts}
-                />
-              )}
-            />
-          </div>
+          <button className="pianoBtn">
+            <div>
+              <SoundfontProvider
+                instrumentName="acoustic_grand_piano"
+                audioContext={audioContext}
+                hostname={soundfontHostname}
+                render={({ isLoading, playNote, stopNote }) => (
+                  <PianoWithRecording
+                    recording={this.state.recording}
+                    setRecording={this.setRecording}
+                    noteRange={noteRange}
+                    width={300}
+                    playNote={playNote}
+                    stopNote={stopNote}
+                    disabled={isLoading}
+                    keyboardShortcuts={keyboardShortcuts}
+                  />
+                )}
+              />
+            </div>
+          </button>
         </div>
         <br />
         <div>
@@ -277,7 +285,11 @@ class Player extends React.Component {
           <button onClick={this.onClickClear}>Clear</button>
           <button onClick={this.checkAnswer}>Check your answer</button>
         </div>
-        {this.state.score ? <Results score={this.state.score} /> : <p></p>}
+        {this.state.score ? (
+          <Results score={this.state.score} onClickOk={this.onClickOk} />
+        ) : (
+          <p></p>
+        )}
       </div>
     );
   }
