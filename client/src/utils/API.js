@@ -21,10 +21,12 @@ export default {
     return axios.post("/api/users/tests", scoreData);
   },
 
-  getUserInfo: function () {
-    let user = JSON.parse(localStorage.getItem("authUser")).user_name;
+  getUserInfo: function (data) {
+    // let user = JSON.parse(localStorage.getItem("authUser")).user_name;
+    let user = data;
     return axios.get("/api/users/" + user);
   },
+
   getAllUserInfo: function () {
     return axios.get("/api/users/");
   },

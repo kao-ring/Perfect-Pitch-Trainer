@@ -64,7 +64,8 @@ class Player extends React.Component {
   }
 
   userInfo() {
-    API.getUserInfo()
+    let user = JSON.parse(localStorage.getItem("authUser")).user_name;
+    API.getUserInfo(user)
       .then((res) => {
         // console.log(res.data);
         this.setState({

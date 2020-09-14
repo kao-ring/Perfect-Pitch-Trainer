@@ -16,7 +16,9 @@ for (let i = 0; i < 30; i++) {
   tests.push(Math.floor(Math.random() * 10)); //仮データ
 }
 
-API.getUserInfo()
+let user = JSON.parse(localStorage.getItem("authUser")).user_name;
+
+API.getUserInfo(user)
   .then((res) => {
     console.log(res.data);
     totalScore(res.data.tests);
@@ -62,7 +64,7 @@ const state = {
   ],
 };
 
-const user = JSON.parse(localStorage.getItem("authUser")).user_name;
+// const user = JSON.parse(localStorage.getItem("authUser")).user_name;
 
 export default class Progress extends React.Component {
   render() {
