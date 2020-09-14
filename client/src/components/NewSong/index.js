@@ -40,7 +40,9 @@ class NewSong extends React.Component {
     this.scheduledEvents = [];
   }
   componentDidMount() {
-    this.loadSongs();
+    if (this.state.recording.events) {
+      this.loadSongs();
+    }
   }
 
   loadSongs() {
