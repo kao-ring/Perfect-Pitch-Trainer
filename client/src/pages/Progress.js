@@ -6,23 +6,31 @@ import API from "../utils/API";
 const startDate = new Date(2020, 8, 1);
 
 const labels = [];
-const totalScore = [];
-const numberOfTests = [];
+const score = [];
+const tests = [];
 
 for (let i = 0; i < 30; i++) {
   const date = moment(startDate).add(i, "days").format("YYYY-MM-DD");
   labels.push(date.toString());
-  totalScore.push(Math.floor(Math.random() * 30)); //仮データ
-  numberOfTests.push(Math.floor(Math.random() * 10)); //仮データ
+  score.push(Math.floor(Math.random() * 30)); //仮データ
+  tests.push(Math.floor(Math.random() * 10)); //仮データ
 }
 
-// function userInfo() {
 API.getUserInfo()
   .then((res) => {
-    console.log(res.data);
+    // console.log(res.data);
+    totalScore(res.data.tests);
+    numberOfTests(res.data.tests);
   })
   .catch((err) => console.log(err));
-// }
+
+function totalScore(data) {
+  console.log(data);
+}
+
+function numberOfTests(data) {
+  console.log(data);
+}
 
 const state = {
   labels: labels,
@@ -34,7 +42,7 @@ const state = {
       backgroundColor: "rgba(75,192,192,1)",
       borderColor: "rgba(0,0,0,1)",
       borderWidth: 2,
-      data: totalScore,
+      data: score,
     },
     {
       label: "Number of tests",
@@ -43,7 +51,7 @@ const state = {
       backgroundColor: "rgba(75,192,192,1)",
       borderColor: "rgba(255, 99, 132, 1)",
       borderWidth: 2,
-      data: numberOfTests,
+      data: tests,
     },
   ],
 };
