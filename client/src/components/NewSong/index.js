@@ -160,7 +160,6 @@ class NewSong extends React.Component {
   };
 
   onClickEdit = (event) => {
-    console.log("エディット");
     let selectedSong = this.state.songEvents[+event.target.id];
     this.setState({
       saveSwitch: false,
@@ -226,7 +225,7 @@ class NewSong extends React.Component {
             <ul>
               {this.state.songEvents.map((song, i) => {
                 return (
-                  <li>
+                  <li key={song._id}>
                     {song.title}
                     <i
                       className="far fa-trash-alt navBtn"

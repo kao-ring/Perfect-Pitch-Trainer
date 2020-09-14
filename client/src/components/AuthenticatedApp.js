@@ -40,9 +40,8 @@ const AuthenticatedApp = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <Nav />
-      {/* {state.welcomeMessage ? <p>{state.welcomeMessage}</p> : <p>Hello</p>} */}
 
       <Router>
         <Route exact path="/" component={Player} />
@@ -51,9 +50,21 @@ const AuthenticatedApp = () => {
       </Router>
 
       <hr />
-      <button className="logout" onClick={handleLogout}>
-        Logout
-      </button>
+
+      <div className="logout">
+        <div>
+          <button className="logOutBtn" onClick={handleLogout}>
+            Logout
+          </button>
+          <div className="welcome">
+            {state.welcomeMessage ? (
+              <p>{state.welcomeMessage}</p>
+            ) : (
+              <p>Hello</p>
+            )}
+          </div>
+        </div>
+      </div>
       <Footer />
     </div>
   );

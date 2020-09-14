@@ -27,11 +27,10 @@ button {
 button:hover {
   border-color: rgba(255, 255, 255, 1);
 }
-.logout {
-  position: fixed;
-  bottom: 2rem;
-  color: #363131;
+i:hover {
+  color: olive;
 }
+
 .signup {
   background-color: green;
   color: white;
@@ -63,3 +62,22 @@ select {
 .editlist {
   text-align: left;
 }
+
+.container {
+  text-align: center;
+}
+.hiUser {
+  float: left;
+}
+.logout {
+  position: fixed;
+  left: 0;
+  right: 0px;
+  bottom: 1.5rem;
+  color: #363131;
+  text-align: center;
+}
+
+/* .welcome {
+  float: left;
+} */

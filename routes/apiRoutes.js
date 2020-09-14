@@ -4,7 +4,7 @@ const db = require("../models");
 
 // routes that we want to protect
 Router.get("/welcome", (req, res) => {
-  res.send("Welcome");
+  res.send(res);
 });
 
 Router.route("/users").post(userController.createNew);

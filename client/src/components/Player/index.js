@@ -67,7 +67,7 @@ class Player extends React.Component {
   userInfo() {
     API.getUserInfo()
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({
           user: res.data,
         });
