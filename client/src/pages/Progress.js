@@ -18,9 +18,15 @@ for (let i = 0; i < 30; i++) {
 
 API.getUserInfo()
   .then((res) => {
-    // console.log(res.data);
+    console.log(res.data);
     totalScore(res.data.tests);
     numberOfTests(res.data.tests);
+  })
+  .catch((err) => console.log(err));
+
+API.getAllUserInfo()
+  .then((res) => {
+    console.log(res.data);
   })
   .catch((err) => console.log(err));
 

@@ -25,4 +25,7 @@ export default {
     let user = JSON.parse(localStorage.getItem("authUser")).user_name;
     return axios.get("/api/users/" + user);
   },
+  getAllUserInfo: function () {
+    return axios.get("/api/users/");
+  },
 };

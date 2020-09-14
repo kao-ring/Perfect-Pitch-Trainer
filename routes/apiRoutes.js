@@ -16,7 +16,11 @@ Router.get("/users/:user", (req, res) => {
     .then((dbModel) => res.json(dbModel))
     .catch((err) => res.status(422).json(err));
 });
-
+Router.get("/users", (req, res) => {
+  db.User.find({})
+    .then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
+});
 Router.get("/songs", (req, res) => {
   db.Song.find({})
     .then((dbModel) => res.json(dbModel))
