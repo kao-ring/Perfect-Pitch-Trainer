@@ -44,7 +44,7 @@ const AuthenticatedApp = () => {
 
       <Router>
         <Route exact path="/" component={Player} />
-        <Route path="/progress" component={Progress} />
+        <Route exact path="/progress" component={Progress} />
         <Route path="/newsong" component={NewSong} />
       </Router>
 
