@@ -9,9 +9,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Swal from "sweetalert2";
 
-// CommonJS
-// const Swal = require("sweetalert2");
-
 const UnauthenticatedApp = () => {
   const [state, dispatch] = useGlobalContext();
 
