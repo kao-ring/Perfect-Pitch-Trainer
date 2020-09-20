@@ -38,7 +38,7 @@ const UnauthenticatedApp = () => {
           icon: "error",
           title: "Oops...",
           text: "The email and/or password isn't right. Try again.",
-          footer: "<a href = /register >Create an accoutn HERE</a>",
+          footer: "<a href = /register >Sign up HERE</a>",
         });
       });
   };

@@ -50,11 +50,6 @@ const AuthenticatedApp = () => {
 
         <hr />
 
-        {/* <div className="logout">
-          <button className="logOutBtn" onClick={handleLogout}>
-            Logout
-          </button>
-        </div> */}
         <Footer />
       </Router>
     </div>
