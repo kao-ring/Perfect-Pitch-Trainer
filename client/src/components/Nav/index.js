@@ -6,13 +6,14 @@ function Nav(props) {
   const user = JSON.parse(localStorage.getItem("authUser")).user_name;
   return (
     <div className="navbar">
-      <Link to="/">
-        {/* <i className="fas fa-music"> </i> */}
-        Perfect Pitch Trainer
-      </Link>{" "}
-      <div className="hiUser">
-        <i className="far fa-user" onClick={props.handleLogout}></i>
+      <Link to="/">Perfect Pitch Trainer</Link>{" "}
+      <div className="hiUser dropdown">
+        <i className="far fa-user dropbtn"></i>
         {user ? user : "log in please"}
+        <div className="dropdown-content">
+          <Link to="/userinfo">User Info</Link>
+          <a onClick={props.handleLogout}>Log Out</a>
+        </div>
       </div>
       <div className="navBtn">
         <Link to="/progress">

@@ -46,23 +46,6 @@ const UnauthenticatedApp = () => {
       });
   };
 
-  // const doLogin = async () => {
-  //   const { data } = await axios.post("/auth/login", {
-  //     user_name: emailRef.current.value,
-  //     password: passwordRef.current.value,
-  //   });
-
-  //   console.log(data);
-  //   console.log(state);
-  //   // save the authenticated user data in local storage
-  //   localStorage.setItem("authUser", JSON.stringify(data));
-  //   // save the authenticated user data in local storage
-  //   dispatch({
-  //     type: LOGIN,
-  //     user: data,
-  //   });
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     doLogin();

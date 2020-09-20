@@ -8,6 +8,7 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import Progress from "../pages/Progress.js";
 import NewSong from "./NewSong";
+import UserInfo from "./UserInfo";
 import Info from "../pages/Info";
 
 const AuthenticatedApp = () => {
@@ -47,6 +48,7 @@ const AuthenticatedApp = () => {
         <Route exact path="/progress" component={Progress} />
         <Route path="/newsong" component={NewSong} />
         <Route exact path="/info" component={Info} />
+        <Route exact path="/userinfo" component={UserInfo} />
 
         <hr />
 
