@@ -38,7 +38,10 @@ const UnauthenticatedApp = () => {
           icon: "error",
           title: "Oops...",
           text: "The email and/or password isn't right. Try again.",
-          // footer: "<Link to='/register'>Sign up HERE</Link>",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload();
+          }
         });
       });
   };
