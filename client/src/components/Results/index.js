@@ -12,12 +12,6 @@ function Results(props) {
     image = <img src="img/wrong.png" alt="wrong" className="img" />;
   }
 
-  // function okBtn() {
-  //   console.log("オッケー");
-  //   message = "next";
-  //   image = "da";
-  // }
-
   return (
     <div className="results">
       <div>

@@ -30,4 +30,8 @@ export default {
   getAllUserInfo: function () {
     return axios.get("/api/users/");
   },
+
+  updateUser: function (id, userData) {
+    return axios.put("/api/users/" + id, userData);
+  },
 };

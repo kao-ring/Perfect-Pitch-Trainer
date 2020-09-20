@@ -49,7 +49,6 @@ class Player extends React.Component {
 
   componentDidMount() {
     this.loadSongs();
-
     this.userInfo();
   }
 
@@ -73,6 +72,13 @@ class Player extends React.Component {
         });
       })
       .catch((err) => console.log(err));
+  }
+
+  getLastScore(title) {
+    let currentTest = this.state.user.tests.find(
+      (test) => test.title === title
+    );
+    return currentTest?.score;
   }
 
   getRecordingEndTime = () => {
@@ -233,9 +239,9 @@ class Player extends React.Component {
           <select
             onChange={(event) => {
               this.setState({
-                currentSong: this.state.songEvents[event.target.value].notes,
+                currentSong: this.state.songEvents[event.target.value]?.notes,
                 currentSongTitle: this.state.songEvents[event.target.value]
-                  .title,
+                  ?.title,
               });
             }}
           >
@@ -250,6 +256,12 @@ class Player extends React.Component {
           </select>
           <button onClick={this.onClickPlay}>Play</button>
         </div>
+        {this.state.currentSongTitle && (
+          <strong>
+            Your last score was:{" "}
+            {this.getLastScore(this.state.currentSongTitle)}
+          </strong>
+        )}
         <br />
         <div className="piano">
           <button className="pianoBtn">

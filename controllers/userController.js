@@ -3,12 +3,22 @@ const db = require("../models");
 module.exports = {
   createNew: async (req, res) => {
     const { user_name, password } = req.body;
-
-    const newUser = await db.User.create({
+    db.User.create({
       user_name: user_name,
       password: password,
-    });
-    res.json(newUser);
+    })
+      .then((res) => {
+        return res.json(res);
+      })
+      .catch((err) => {
+        return alert(err);
+      });
+
+    // const newUser = await db.User.create({
+    //   user_name: user_name,
+    //   password: password,
+    // });
+    // res.json(newUser);
   },
 
   addTest: async (req, res) => {

@@ -10,8 +10,6 @@ function Progress() {
 
   useEffect(() => {
     userInfo();
-    // console.log("エフェクト");
-    // console.log(users);
   }, []);
 
   const userInfo = () => {
@@ -25,13 +23,11 @@ function Progress() {
       .catch((err) => console.log(err));
   };
 
-  // const scoreTotal = (tests) => {
-  //   tests.map((test) => {
-  //     let total = 0;
-  //     total += test.score;
-  //     return 100;
-  //   });
-  // };
+  const scoreTotal = (tests) => {
+    const reducer = (accumulator, currentValue) =>
+      accumulator + currentValue.score;
+    return tests.reduce(reducer, 0);
+  };
 
   const options = {
     animationEnabled: true,
@@ -48,11 +44,7 @@ function Progress() {
       {
         type: "bar",
         dataPoints: users.map((user) => {
-          // return { y: scoreTotal(user.tests), label: user.user_name };
-          return {
-            y: Math.floor(Math.random() * 10000),
-            label: user.user_name,
-          };
+          return { y: scoreTotal(user.tests), label: user.user_name };
         }),
       },
     ],

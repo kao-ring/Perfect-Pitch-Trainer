@@ -11,7 +11,8 @@ const testSchema = new Schema({
 });
 
 const userSchema = new Schema({
-  user_name: String,
+  user_name: { type: String, unique: true, required: true },
+
   password: String,
   tests: [testSchema],
 });

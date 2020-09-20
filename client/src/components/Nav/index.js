@@ -4,6 +4,7 @@ import "./style.css";
 
 function Nav(props) {
   const user = JSON.parse(localStorage.getItem("authUser")).user_name;
+
   return (
     <div className="navbar">
       <Link to="/">Perfect Pitch Trainer</Link>{" "}
@@ -33,11 +34,3 @@ function Nav(props) {
 }
 
 export default Nav;
-
-{
-  /* <div className="logout">
-  <button className="logOutBtn" onClick={handleLogout}>
-    Logout
-  </button>
-</div>; */
-}

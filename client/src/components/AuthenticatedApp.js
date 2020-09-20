@@ -38,6 +38,7 @@ const AuthenticatedApp = () => {
     dispatch({
       type: LOGOUT,
     });
+    window.location.replace("/");
   };
 
   return (
@@ -48,7 +49,9 @@ const AuthenticatedApp = () => {
         <Route exact path="/progress" component={Progress} />
         <Route path="/newsong" component={NewSong} />
         <Route exact path="/info" component={Info} />
-        <Route exact path="/userinfo" component={UserInfo} />
+        <Route exact path="/userinfo">
+          <UserInfo handleLogout={handleLogout} />
+        </Route>
 
         <hr />
 
