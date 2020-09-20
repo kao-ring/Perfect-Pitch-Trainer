@@ -9,7 +9,7 @@ Router.post("/login", function (req, res) {
     console.log("user info", user);
     if (err || !user) {
       return res.status(400).json({
-        message: "Something is not right",
+        message: "Hmm... tha email and/or password isn't right. Try again.",
         user: user,
       });
     }

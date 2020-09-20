@@ -7,6 +7,10 @@ import Register from "../pages/Register";
 import Info from "../pages/Info";
 import Header from "./Header";
 import Footer from "./Footer";
+import Swal from "sweetalert2";
+
+// CommonJS
+// const Swal = require("sweetalert2");
 
 const UnauthenticatedApp = () => {
   const [state, dispatch] = useGlobalContext();
@@ -14,22 +18,50 @@ const UnauthenticatedApp = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const doLogin = async () => {
-    const { data } = await axios.post("/auth/login", {
-      user_name: emailRef.current.value,
-      password: passwordRef.current.value,
-    });
-
-    console.log(data);
-    console.log(state);
-    // save the authenticated user data in local storage
-    localStorage.setItem("authUser", JSON.stringify(data));
-    // save the authenticated user data in local storage
-    dispatch({
-      type: LOGIN,
-      user: data,
-    });
+  const doLogin = () => {
+    axios
+      .post("/auth/login", {
+        user_name: emailRef.current.value,
+        password: passwordRef.current.value,
+      })
+      .then((res) => {
+        console.log(res.data);
+        console.log(state);
+        // save the authenticated user res.data in local storage
+        localStorage.setItem("authUser", JSON.stringify(res.data));
+        // save the authenticated user res.data in local storage
+        dispatch({
+          type: LOGIN,
+          user: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "The email and/or password isn't right. Try again.",
+          footer: "<a href = /register >Create an accoutn HERE</a>",
+        });
+      });
   };
+
+  // const doLogin = async () => {
+  //   const { data } = await axios.post("/auth/login", {
+  //     user_name: emailRef.current.value,
+  //     password: passwordRef.current.value,
+  //   });
+
+  //   console.log(data);
+  //   console.log(state);
+  //   // save the authenticated user data in local storage
+  //   localStorage.setItem("authUser", JSON.stringify(data));
+  //   // save the authenticated user data in local storage
+  //   dispatch({
+  //     type: LOGIN,
+  //     user: data,
+  //   });
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
