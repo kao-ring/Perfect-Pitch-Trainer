@@ -17,8 +17,8 @@ function Progress() {
   const userInfo = () => {
     API.getAllUserInfo()
       .then((res) => {
-        console.log("***getAllUserInfo***");
-        console.log(res.data);
+        // console.log("***getAllUserInfo***");
+        // console.log(res.data);
         setUsers(res.data);
       })
       .catch((err) => console.log(err));
@@ -39,17 +39,59 @@ function Progress() {
     return tests.reduce(reducer, 0);
   };
 
-  // const testGroupByDate
+  const dailyScore = () => {
+    console.log(user);
+    if (user.tests) {
+      const arrayOfDates = user.tests.map(
+        (test) => test.scoreCreated.split("T")[0]
+      );
+      const noRepeats = arrayOfDates.filter(
+        (day, i) => !arrayOfDates.slice(0, i).includes(day)
+      );
+      console.log(noRepeats);
+
+      const scoreData = noRepeats.map((day) => {
+        return user.tests
+          .filter((test) => test.scoreCreated.split("T")[0] === day)
+          .reduce((total, current) => total + current.score, 0);
+      });
+      console.log(scoreData);
+
+      let dataPoint = [];
+      for (let i = 0; i < noRepeats.length; i++) {
+        dataPoint.push({ label: noRepeats[i], y: scoreData[i] });
+      }
+      console.log(dataPoint);
+      return dataPoint;
+    }
+
+    // let dummy = [
+    //   { label: "2020-06-12", y: 50 },
+    //   { label: "2020-06-12", y: 128 },
+    //   { label: "2020-06-13", y: 500 },
+    //   { label: "2020-06-12", y: 556 },
+    //   { label: "2020-06-12", y: 103 },
+    //   { label: "2020-06-13", y: 22 },
+    //   { label: "2020-06-12", y: 0 },
+    //   { label: "2020-06-12", y: 300 },
+    //   { label: "2020-06-13", y: 450 },
+    // ];
+    // return dummy;
+  };
 
   const options = {
     animationEnabled: true,
+    exportEnabled: true,
     theme: "light2",
     title: {
       text: "Student's Progress",
     },
     axisX: {
       title: "Student's Name",
-      reversed: true,
+      interval: 1,
+      margin: 10,
+      labelPlacement: "inside",
+      tickPlacement: "inside",
     },
     axisY: {
       title: "Total Score",
@@ -57,6 +99,7 @@ function Progress() {
     data: [
       {
         type: "bar",
+
         dataPoints: users.map((user) => {
           return { y: scoreTotal(user.tests), label: user.user_name };
         }),
@@ -66,42 +109,34 @@ function Progress() {
 
   const options2 = {
     animationEnabled: true,
+    exportEnabled: true,
     theme: "light2",
     title: {
       text: "Your Daily Progress",
     },
     axisX: {
       title: "Date",
-      reversed: false,
+      // interval: 1,
     },
     axisY: {
       title: "Daily Total Score",
+      margin: 10,
     },
     data: [
       {
         type: "line",
-        dataPoints: [
-          { x: new Date(2020, 0), y: 25060 },
-          { x: new Date(2020, 1), y: 27980 },
-          { x: new Date(2020, 2), y: 42800 },
-          { x: new Date(2020, 3), y: 32400 },
-          { x: new Date(2020, 4), y: 35260 },
-          { x: new Date(2020, 5), y: 33900 },
-          { x: new Date(2020, 6), y: 40000 },
-          { x: new Date(2020, 7), y: 52500 },
-          { x: new Date(2020, 8), y: 32300 },
-          { x: new Date(2020, 9), y: 42000 },
-          { x: new Date(2020, 10), y: 37160 },
-          { x: new Date(2020, 11), y: 38400 },
-        ],
+        dataPoints: dailyScore(),
       },
     ],
   };
 
   return (
     <div>
+      <br />
       <CanvasJSChart options={options} />
+      <br />
       <CanvasJSChart options={options2} />
+      <br />
     </div>
   );
 }
