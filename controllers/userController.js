@@ -13,12 +13,6 @@ module.exports = {
       .catch((err) => {
         return alert(err);
       });
-
-    // const newUser = await db.User.create({
-    //   user_name: user_name,
-    //   password: password,
-    // });
-    // res.json(newUser);
   },
 
   addTest: async (req, res) => {

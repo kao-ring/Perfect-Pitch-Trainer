@@ -75,9 +75,9 @@ class Player extends React.Component {
   }
 
   getLastScore(title) {
-    let currentTest = this.state.user.tests.find(
-      (test) => test.title === title
-    );
+    let currentTest = this.state.user.tests
+      .reverse()
+      .find((test) => test.title === title);
     return currentTest?.score;
   }
 
@@ -254,7 +254,9 @@ class Player extends React.Component {
               );
             })}
           </select>
-          <button onClick={this.onClickPlay}>Play</button>
+          <button disabled={!this.state.currentSong} onClick={this.onClickPlay}>
+            Play
+          </button>
         </div>
         {this.state.currentSongTitle && (
           <strong>
@@ -296,7 +298,9 @@ class Player extends React.Component {
             })}
           </div>
           <button onClick={this.onClickClear}>Clear</button>
-          <button onClick={this.checkAnswer}>Check your answer</button>
+          <button disabled={!this.state.inputAnswer} onClick={this.checkAnswer}>
+            Check your answer
+          </button>
         </div>
         {this.state.score ? (
           <Results score={this.state.score} onClickOk={this.onClickOk} />

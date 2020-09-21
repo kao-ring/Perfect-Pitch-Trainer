@@ -27,6 +27,9 @@ button {
 button:hover {
   border-color: rgba(255, 255, 255, 1);
 }
+button:disabled {
+  background-color: gray;
+}
 i:hover {
   color: blanchedalmond;
 }

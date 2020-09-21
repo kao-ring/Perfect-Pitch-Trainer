@@ -59,3 +59,9 @@
 .dropdown:hover .dropbtn {
   color: blanchedalmond;
 }
+
+@media only screen and (max-width: 380px) {
+  .navbar {
+    font-size: 16px;
+  }
+}

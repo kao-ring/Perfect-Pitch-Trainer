@@ -4,7 +4,7 @@
   background-color: #ffa500;
   text-align: center;
   color: darkslategray;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 a:link {
@@ -20,4 +20,10 @@ a:visited {
 .earlogo {
   width: 2.5rem;
   float: left;
+}
+
+@media only screen and (max-width: 380px) {
+  .navbar {
+    font-size: 16px;
+  }
 }
