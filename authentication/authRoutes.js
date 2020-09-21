@@ -6,7 +6,7 @@ const userController = require("../controllers/userController");
 /* POST login. */
 Router.post("/login", function (req, res) {
   passport.authenticate("local", { session: false }, (err, user, info) => {
-    console.log("user info", user);
+    // console.log("user info", user);
     if (err || !user) {
       return res.status(400).json({
         message: "Hmm... tha email and/or password isn't right. Try again.",

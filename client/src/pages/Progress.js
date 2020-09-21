@@ -40,7 +40,7 @@ function Progress() {
   };
 
   const dailyScore = () => {
-    console.log(user);
+    // console.log(user);
     if (user.tests) {
       const arrayOfDates = user.tests.map(
         (test) => test.scoreCreated.split("T")[0]
@@ -48,35 +48,22 @@ function Progress() {
       const noRepeats = arrayOfDates.filter(
         (day, i) => !arrayOfDates.slice(0, i).includes(day)
       );
-      console.log(noRepeats);
+      // console.log(noRepeats);
 
       const scoreData = noRepeats.map((day) => {
         return user.tests
           .filter((test) => test.scoreCreated.split("T")[0] === day)
           .reduce((total, current) => total + current.score, 0);
       });
-      console.log(scoreData);
+      // console.log(scoreData);
 
       let dataPoint = [];
       for (let i = 0; i < noRepeats.length; i++) {
         dataPoint.push({ label: noRepeats[i], y: scoreData[i] });
       }
-      console.log(dataPoint);
+      // console.log(dataPoint);
       return dataPoint;
     }
-
-    // let dummy = [
-    //   { label: "2020-06-12", y: 50 },
-    //   { label: "2020-06-12", y: 128 },
-    //   { label: "2020-06-13", y: 500 },
-    //   { label: "2020-06-12", y: 556 },
-    //   { label: "2020-06-12", y: 103 },
-    //   { label: "2020-06-13", y: 22 },
-    //   { label: "2020-06-12", y: 0 },
-    //   { label: "2020-06-12", y: 300 },
-    //   { label: "2020-06-13", y: 450 },
-    // ];
-    // return dummy;
   };
 
   const options = {
@@ -116,7 +103,6 @@ function Progress() {
     },
     axisX: {
       title: "Date",
-      // interval: 1,
     },
     axisY: {
       title: "Daily Total Score",

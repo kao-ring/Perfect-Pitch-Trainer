@@ -20,7 +20,7 @@ function UserInfo(props) {
   const handleSubmit = (event) => {
     let body;
     event.preventDefault();
-    console.log(nameRef.current.value, passwordRef.current.value);
+    // console.log(nameRef.current.value, passwordRef.current.value);
 
     if (nameRef.current.value && passwordRef.current.value) {
       body = {
@@ -42,7 +42,7 @@ function UserInfo(props) {
 
     API.updateUser(user._id, body)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         alert("User info changed successfully! Please log in again.");
 
         props.handleLogout();

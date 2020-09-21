@@ -15,13 +15,6 @@ const Register = () => {
       user_name: regEmailRef.current.value,
       password: regPasswordRef.current.value,
     });
-
-    console.log(data);
-
-    // dispatch({
-    //   type: LOGIN,
-    //   user: data
-    // })
   };
 
   const handleSignup = (e) => {

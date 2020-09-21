@@ -100,7 +100,7 @@ class Player extends React.Component {
     this.setRecording({
       mode: "PLAYING",
     });
-    console.log(this.state.currentSong);
+    // console.log(this.state.currentSong);
     const startAndEndTimes = _.uniq(
       _.flatMap(this.state.currentSong, (event) => [
         event.time,
@@ -152,6 +152,9 @@ class Player extends React.Component {
     this.setState({
       score: "",
     });
+    if (this.state.score === 100) {
+      window.location.reload();
+    }
   };
 
   midiToNote = (num) => {
@@ -229,6 +232,10 @@ class Player extends React.Component {
     })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
+
+    // if (score === 100) {
+    //   window.location.reload();
+    // }
   };
 
   render() {

@@ -122,7 +122,7 @@ class NewSong extends React.Component {
   };
 
   handleInputChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.setState({
       title: event.target.value,
     });
@@ -130,8 +130,8 @@ class NewSong extends React.Component {
 
   onClickSave = (event) => {
     event.preventDefault();
-    console.log(this.state.title);
-    console.log(this.state.recording.events);
+    // console.log(this.state.title);
+    // console.log(this.state.recording.events);
 
     if (
       this.state.saveSwitch &&
@@ -172,10 +172,10 @@ class NewSong extends React.Component {
   };
 
   onClickDelete = (event) => {
-    console.log(event.target.id);
+    // console.log(event.target.id);
     API.deleteSong(event.target.id)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         this.loadSongs();
       })
       .catch((err) => console.log(err));

@@ -22,8 +22,8 @@ const UnauthenticatedApp = () => {
         password: passwordRef.current.value,
       })
       .then((res) => {
-        console.log(res.data);
-        console.log(state);
+        // console.log(res.data);
+        // console.log(state);
         // save the authenticated user res.data in local storage
         localStorage.setItem("authUser", JSON.stringify(res.data));
         // save the authenticated user res.data in local storage
@@ -33,7 +33,7 @@ const UnauthenticatedApp = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         Swal.fire({
           icon: "error",
           title: "Oops...",
