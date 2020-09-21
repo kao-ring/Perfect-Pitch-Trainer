@@ -8,10 +8,13 @@ module.exports = {
       password: password,
     })
       .then((res) => {
+        console.log(res);
         return res.json(res);
       })
       .catch((err) => {
-        return alert(err);
+        console.log("***error***");
+        console.log(err);
+        return res.json(err);
       });
   },
 

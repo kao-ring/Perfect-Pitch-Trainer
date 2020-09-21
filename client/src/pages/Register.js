@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 import "../App.css";
 
@@ -10,11 +11,24 @@ const Register = () => {
   const regEmailRef = useRef();
   const regPasswordRef = useRef();
 
-  const doSignup = async () => {
-    const { data } = await axios.post("/auth/register", {
-      user_name: regEmailRef.current.value,
-      password: regPasswordRef.current.value,
-    });
+  const doSignup = () => {
+    axios
+      .post("/auth/register", {
+        user_name: regEmailRef.current.value,
+        password: regPasswordRef.current.value,
+      })
+      .then((res) => {
+        if (res.data.name) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "The user name is already taken. Please choose another name.",
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleSignup = (e) => {
