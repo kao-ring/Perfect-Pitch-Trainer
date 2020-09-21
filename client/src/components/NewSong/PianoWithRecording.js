@@ -1,7 +1,7 @@
 import React from "react";
 import { Piano } from "react-piano";
 
-const DURATION_UNIT = 0.5;
+const DURATION_UNIT = 0.4;
 const DEFAULT_NOTE_DURATION = DURATION_UNIT;
 
 class PianoWithRecording extends React.Component {
@@ -43,7 +43,7 @@ class PianoWithRecording extends React.Component {
     });
     this.props.setRecording({
       events: this.props.recording.events.concat(newEvents),
-      currentTime: this.props.recording.currentTime + duration,
+      currentTime: this.props.recording.currentTime + duration + 0.1,
     });
   };
 

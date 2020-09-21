@@ -100,13 +100,14 @@ class Player extends React.Component {
     this.setRecording({
       mode: "PLAYING",
     });
-    // console.log(this.state.currentSong);
+    console.log(this.state.currentSong);
     const startAndEndTimes = _.uniq(
       _.flatMap(this.state.currentSong, (event) => [
         event.time,
         event.time + event.duration,
       ])
     );
+    console.log(startAndEndTimes);
 
     startAndEndTimes.forEach((time) => {
       this.scheduledEvents.push(
@@ -114,7 +115,6 @@ class Player extends React.Component {
           const currentEvents = this.state.currentSong.filter((event) => {
             return event.time <= time && event.time + event.duration > time;
           });
-
           this.setRecording({
             currentEvents,
           });
