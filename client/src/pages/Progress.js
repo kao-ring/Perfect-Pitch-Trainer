@@ -17,8 +17,8 @@ function Progress() {
   const userInfo = () => {
     API.getAllUserInfo()
       .then((res) => {
-        // console.log("***getAllUserInfo***");
-        // console.log(res.data);
+        console.log("***getAllUserInfo***");
+        console.log(res.data);
         setUsers(res.data);
       })
       .catch((err) => console.log(err));
