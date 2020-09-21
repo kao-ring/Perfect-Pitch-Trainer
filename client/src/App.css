@@ -30,6 +30,7 @@ button:hover {
 button:disabled {
   background-color: gray;
 }
+
 i:hover {
   color: blanchedalmond;
 }
@@ -88,4 +89,8 @@ select {
 .pianoBtn {
   /* width: 80%; */
   background-color: gray;
+}
+#deleteAcc {
+  background-color: red;
+  /* color: white; */
 }

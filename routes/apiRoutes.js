@@ -52,6 +52,12 @@ Router.delete("/songs/:id", (req, res) => {
     .catch((err) => res.status(422).json(err));
 });
 
+Router.delete("/users/:id", (req, res) => {
+  db.User.findByIdAndDelete({ _id: req.params.id })
+    .then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
+});
+
 // ===
 
 module.exports = Router;

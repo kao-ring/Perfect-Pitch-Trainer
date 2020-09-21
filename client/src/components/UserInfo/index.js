@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import API from "../../utils/API";
 
 function UserInfo(props) {
@@ -50,6 +51,22 @@ function UserInfo(props) {
       .catch((err) => console.log(err));
   };
 
+  const deleteAcc = () => {
+    if (
+      window.confirm(
+        "Are you sure to delete this account? You are loosing all test scores."
+      )
+    ) {
+      console.log(user._id);
+      API.deleteUser(user._id)
+        .then((res) => {
+          alert("Delete account successfully!");
+          props.handleLogout();
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   return (
     <div>
       <p>Edit your information:</p>
@@ -70,6 +87,13 @@ function UserInfo(props) {
           <button type="submit">Submit</button>
         </div>
       </form>
+      <hr />
+
+      <div>
+        <button id="deleteAcc" onClick={deleteAcc}>
+          Delete this account
+        </button>
+      </div>
     </div>
   );
 }
