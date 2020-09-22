@@ -1,15 +1,20 @@
 .container {
   text-align: center;
-  color: slategray;
+  color: gray;
 }
 .text_left {
   text-align: left;
+  color: white;
 }
 .bg_light {
   background-color: bisque;
   padding: 15px;
   margin-top: 5px;
+  color: darkslategray;
 }
 .float_right {
   float: right;
+}
+h1 {
+  color: white;
 }

@@ -3,7 +3,7 @@ import "./info.css";
 
 function Info() {
   return (
-    <div className="container">
+    <div className="unauthContainer">
       <h1>Explore</h1>
       <div className="text_left">Links</div>
       <div className="bg_light">

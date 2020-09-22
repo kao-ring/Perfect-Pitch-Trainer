@@ -7,28 +7,25 @@ function Nav(props) {
 
   return (
     <div className="navbar">
-      <Link to="/">Perfect Pitch Trainer</Link>{" "}
+      <Link to="/">
+        <img src="/img/ear-logo.png" alt="ear-logo" className="earlogo" />
+      </Link>
       <div className="hiUser dropdown">
         <i className="far fa-user dropbtn"></i>
-        {user ? user : "log in please"}
         <div className="dropdown-content">
+          <div>{user ? "Hi, " + user : "log in please"}</div>
+          <hr />
           <Link to="/userinfo">User Info</Link>
           <a onClick={props.handleLogout}>Log Out</a>
         </div>
       </div>
-      <div className="navBtn">
-        <Link to="/progress">
-          {"   "}
-          <i className="fas fa-chart-line"> </i>
-        </Link>
-      </div>
-      <div className="navBtn">
-        {" "}
-        {"   "}
-        <Link to="/newsong">
-          <i className="fas fa-plus"></i>
-        </Link>
-      </div>
+      <Link to="/">Perfect Pitch Trainer</Link>
+      <Link to="/progress">
+        <i className="fas fa-chart-line"> </i>
+      </Link>
+      <Link to="/newsong">
+        <i className="fas fa-plus"></i>
+      </Link>
     </div>
   );
 }

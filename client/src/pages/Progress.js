@@ -106,11 +106,7 @@ function Progress() {
     data: [
       {
         type: "bar",
-
         dataPoints: rankingScore(),
-        // users.map((user) => {
-        //   return { y: scoreTotal(user.tests), label: user.user_name };
-        // }),
       },
     ],
   };

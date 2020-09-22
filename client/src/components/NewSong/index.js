@@ -228,7 +228,7 @@ class NewSong extends React.Component {
               {this.state.songEvents.map((song, i) => {
                 return (
                   <li key={song._id}>
-                    {song.title}
+                    <strong>{song.title}</strong>
                     <i
                       className="far fa-trash-alt navBtn"
                       id={song._id}

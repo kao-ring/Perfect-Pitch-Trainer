@@ -15,21 +15,19 @@
 .navBtn:hover {
   color: white;
 }
-.earlogo {
-  width: 2.5rem;
-  margin-top: 0;
-}
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
   display: inline-block;
+  z-index: 10;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
-  position: absolute;
+  position: fixed;
+  right: 10px;
   font-size: 14px;
   background-color: #f1f1f1;
   min-width: 100px;
@@ -59,7 +57,18 @@
 .dropdown:hover .dropbtn {
   color: blanchedalmond;
 }
-
+.fa-chart-line {
+  position: fixed;
+  right: 3rem;
+}
+.fa-plus {
+  position: fixed;
+  right: 5rem;
+}
+.hiUser {
+  position: fixed;
+  right: 1rem;
+}
 @media only screen and (max-width: 380px) {
   .navbar {
     font-size: 16px;

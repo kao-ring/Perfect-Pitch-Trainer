@@ -53,35 +53,37 @@ const UnauthenticatedApp = () => {
 
   return (
     <Router>
-      <Header />
-      <Route exact path="/">
-        <p>Please enter your information to login:</p>
-        <form onSubmit={handleSubmit}>
-          <div className="input">
-            {" "}
-            <input type="text" placeholder="user_name" ref={emailRef} />
-          </div>
-          <div className="input">
-            <input type="password" placeholder="password" ref={passwordRef} />
-          </div>
-          <div className="btn">
-            {" "}
-            <button type="submit">Log in</button>
-          </div>
-        </form>
-        <hr />
-        <Link to="/register">
-          <p>If you don't have an account:</p>
-          <button className="signup"> Create Account</button>
-        </Link>
-      </Route>
-      <Route exact path="/register">
-        <Register />
-      </Route>
-      <Route exact path="/info">
-        <Info />
-      </Route>
-      <Footer />
+      <div className="unauthContainer">
+        <Header />
+        <Route exact path="/">
+          <p>Please enter your information to login:</p>
+          <form onSubmit={handleSubmit}>
+            <div className="input">
+              {" "}
+              <input type="text" placeholder="user_name" ref={emailRef} />
+            </div>
+            <div className="input">
+              <input type="password" placeholder="password" ref={passwordRef} />
+            </div>
+            <div className="btn">
+              {" "}
+              <button type="submit">Log in</button>
+            </div>
+          </form>
+          <hr />
+          <Link to="/register">
+            <p>If you don't have an account:</p>
+            <button className="signup"> Create Account</button>
+          </Link>
+        </Route>
+        <Route exact path="/register">
+          <Register />
+        </Route>
+        <Route exact path="/info">
+          <Info />
+        </Route>
+        <Footer />
+      </div>
     </Router>
   );
 };

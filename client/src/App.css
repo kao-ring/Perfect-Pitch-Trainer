@@ -70,9 +70,7 @@ select {
 .container {
   text-align: center;
 }
-.hiUser {
-  float: left;
-}
+
 .logout {
   position: fixed;
   left: 0;
@@ -88,9 +86,12 @@ select {
 }
 .pianoBtn {
   /* width: 80%; */
-  background-color: gray;
+  background-color: black;
 }
 #deleteAcc {
   background-color: red;
   /* color: white; */
+}
+p {
+  color: white;
 }
