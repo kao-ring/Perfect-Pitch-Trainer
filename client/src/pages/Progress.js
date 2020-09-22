@@ -32,10 +32,34 @@ function Progress() {
       .catch((err) => console.log(err));
   };
 
-  const scoreTotal = (tests) => {
-    const reducer = (accumulator, currentValue) =>
-      accumulator + currentValue.score;
-    return tests.reduce(reducer, 0);
+  // const scoreTotal = (tests) => {
+  //   const reducer = (accumulator, currentValue) =>
+  //     accumulator + currentValue.score;
+  //   return tests.reduce(reducer, 0);
+  // };
+
+  const rankingScore = () => {
+    const allUserName = users.map((user) => user.user_name);
+    // console.log(allUserName);
+    const scoreTotal = users.map((user) =>
+      user.tests.reduce((total, current) => total + current.score, 0)
+    );
+    // console.log(scoreTotal);
+    let dataPoint = [];
+    for (let i = 0; i < allUserName.length; i++) {
+      dataPoint.push({ label: allUserName[i], y: scoreTotal[i] });
+    }
+
+    //オブジェクト要素のソート
+    dataPoint.sort(function (a, b) {
+      if (a.y < b.y) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
+    return dataPoint;
   };
 
   const dailyScore = () => {
@@ -67,10 +91,10 @@ function Progress() {
     exportEnabled: true,
     theme: "light2",
     title: {
-      text: "Student's Progress",
+      text: "User Ranking",
     },
     axisX: {
-      title: "Student's Name",
+      title: "User Name",
       interval: 1,
       margin: 10,
       labelPlacement: "inside",
@@ -83,9 +107,10 @@ function Progress() {
       {
         type: "bar",
 
-        dataPoints: users.map((user) => {
-          return { y: scoreTotal(user.tests), label: user.user_name };
-        }),
+        dataPoints: rankingScore(),
+        // users.map((user) => {
+        //   return { y: scoreTotal(user.tests), label: user.user_name };
+        // }),
       },
     ],
   };

@@ -56,7 +56,7 @@ function UserInfo(props) {
         "Are you sure to delete this account? You are loosing all test scores."
       )
     ) {
-      console.log(user._id);
+      // console.log(user._id);
       API.deleteUser(user._id)
         .then((res) => {
           alert("Delete account successfully!");

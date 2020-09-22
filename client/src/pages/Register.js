@@ -12,23 +12,28 @@ const Register = () => {
   const regPasswordRef = useRef();
 
   const doSignup = () => {
-    axios
-      .post("/auth/register", {
-        user_name: regEmailRef.current.value,
-        password: regPasswordRef.current.value,
-      })
-      .then((res) => {
-        if (res.data.name) {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "The user name is already taken. Please choose another name.",
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (regEmailRef.current.value && regPasswordRef.current.value) {
+      axios
+        .post("/auth/register", {
+          user_name: regEmailRef.current.value,
+          password: regPasswordRef.current.value,
+        })
+        .then((res) => {
+          if (res.data.name) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text:
+                "The user name is already taken. Please choose another name.",
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert("Missing some information");
+    }
   };
 
   const handleSignup = (e) => {
