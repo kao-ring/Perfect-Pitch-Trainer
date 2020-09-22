@@ -143,7 +143,7 @@ class NewSong extends React.Component {
         notes: this.state.recording.events,
       })
         .then((res) => {
-          console.log(res);
+          console.log(res.statusText);
 
           this.loadSongs();
         })
@@ -154,7 +154,7 @@ class NewSong extends React.Component {
         notes: this.state.recording.events,
       })
         .then((res) => {
-          console.log(res);
+          console.log(res.statusText);
           this.loadSongs();
         })
         .catch((err) => console.log(err));

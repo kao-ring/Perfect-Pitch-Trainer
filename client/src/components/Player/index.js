@@ -100,14 +100,13 @@ class Player extends React.Component {
     this.setRecording({
       mode: "PLAYING",
     });
-    console.log(this.state.currentSong);
+
     const startAndEndTimes = _.uniq(
       _.flatMap(this.state.currentSong, (event) => [
         event.time,
         event.time + event.duration,
       ])
     );
-    console.log(startAndEndTimes);
 
     startAndEndTimes.forEach((time) => {
       this.scheduledEvents.push(
@@ -230,12 +229,8 @@ class Player extends React.Component {
       title: this.state.currentSongTitle,
       score: score,
     })
-      .then((res) => console.log(res))
+      .then((res) => console.log(res.statusText))
       .catch((err) => console.log(err));
-
-    // if (score === 100) {
-    //   window.location.reload();
-    // }
   };
 
   render() {

@@ -3,7 +3,6 @@ import CanvasJSReact from "./assets/canvasjs.react";
 import API from "../utils/API";
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-// var CanvasJS = CanvasJSReact.CanvasJS;
 
 function Progress() {
   const [users, setUsers] = useState([]);
@@ -17,8 +16,8 @@ function Progress() {
   const userInfo = () => {
     API.getAllUserInfo()
       .then((res) => {
-        console.log("***getAllUserInfo***");
-        console.log(res.data);
+        // console.log("***getAllUserInfo***");
+        // console.log(res.data);
         setUsers(res.data);
       })
       .catch((err) => console.log(err));
@@ -40,7 +39,6 @@ function Progress() {
   };
 
   const dailyScore = () => {
-    // console.log(user);
     if (user.tests) {
       const arrayOfDates = user.tests.map(
         (test) => test.scoreCreated.split("T")[0]
@@ -48,20 +46,18 @@ function Progress() {
       const noRepeats = arrayOfDates.filter(
         (day, i) => !arrayOfDates.slice(0, i).includes(day)
       );
-      // console.log(noRepeats);
 
       const scoreData = noRepeats.map((day) => {
         return user.tests
           .filter((test) => test.scoreCreated.split("T")[0] === day)
           .reduce((total, current) => total + current.score, 0);
       });
-      // console.log(scoreData);
 
       let dataPoint = [];
       for (let i = 0; i < noRepeats.length; i++) {
         dataPoint.push({ label: noRepeats[i], y: scoreData[i] });
       }
-      // console.log(dataPoint);
+
       return dataPoint;
     }
   };
@@ -110,7 +106,7 @@ function Progress() {
     },
     data: [
       {
-        type: "line",
+        type: "column",
         dataPoints: dailyScore(),
       },
     ],
