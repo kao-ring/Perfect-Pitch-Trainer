@@ -90,7 +90,7 @@ select {
 }
 #deleteAcc {
   background-color: red;
-  /* color: white; */
+  color: white;
 }
 p {
   color: white;

@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import API from "../../utils/API";
+import Swal from "sweetalert2";
 
 function UserInfo(props) {
   const [user, setUser] = useState({});
@@ -42,12 +43,17 @@ function UserInfo(props) {
 
     API.updateUser(user._id, body)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         alert("User info changed successfully! Please log in again.");
-
         props.handleLogout();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "The user name is already taken. Please choose another name.",
+        });
+      });
   };
 
   const deleteAcc = () => {
@@ -67,8 +73,8 @@ function UserInfo(props) {
   };
 
   return (
-    <div>
-      <strong>Edit your information:</strong>
+    <div className="container">
+      <h3>Edit your information:</h3>
       <form onSubmit={handleSubmit}>
         <div className="input">
           {" "}
@@ -90,7 +96,7 @@ function UserInfo(props) {
 
       <div>
         <button id="deleteAcc" onClick={deleteAcc}>
-          Delete this account
+          <strong>Delete this account</strong>
         </button>
       </div>
     </div>

@@ -26,6 +26,9 @@ const Register = () => {
               text:
                 "The user name is already taken. Please choose another name.",
             });
+          } else {
+            let user = res.config.data.split('"')[3];
+            Swal.fire("Welcome, " + user + "! Please login.");
           }
         })
         .catch((err) => {
