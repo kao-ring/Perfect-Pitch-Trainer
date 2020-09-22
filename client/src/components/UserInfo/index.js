@@ -68,7 +68,7 @@ function UserInfo(props) {
 
   return (
     <div>
-      <p>Edit your information:</p>
+      <strong>Edit your information:</strong>
       <form onSubmit={handleSubmit}>
         <div className="input">
           {" "}
